@@ -270,7 +270,7 @@ pyrightconfig.json
 
 ### SAM+config Patch ###
 # SAM config - exclude this file if sharing publicly
-load_forecast/samconfig.toml
+**/samconfig.toml
 
 ### venv ###
 # Virtualenv
