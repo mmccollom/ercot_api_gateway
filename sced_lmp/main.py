@@ -35,7 +35,7 @@ def execute(delivery_date: str) -> str:
     cols.insert(0, cols.pop(cols.index('delivery_date')))
     df = df[cols]
 
-    print(df.head())
+    # print(df.head())
 
     return json.loads(df.to_json(orient='records'))
 
