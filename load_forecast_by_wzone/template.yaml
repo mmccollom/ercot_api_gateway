@@ -1,0 +1,17 @@
+Transform: 'AWS::Serverless-2016-10-31'
+Description: >
+  SAM Template
+Resources:
+  Function:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: api_ercot_load_forecast_by_wzone
+      Description: >
+        Lambda function that returns ERCOT load forecast data by weather zone
+      Handler: main.lambda_handler
+      MemorySize: 2048
+      Runtime: python3.7
+      Timeout: 60
+      Policies:
+        - AmazonS3FullAccess
+        - AWSLambdaBasicExecutionRole
