@@ -1,0 +1,17 @@
+Transform: 'AWS::Serverless-2016-10-31'
+Description: >
+  SAM Template
+Resources:
+  Function:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: api_ercot_sced_lmp
+      Description: >
+        Lambda function that returns ERCOT SCED lmp data from S3
+      Handler: main.lambda_handler
+      MemorySize: 2048
+      Runtime: python3.7
+      Timeout: 60
+      Policies:
+        - AmazonS3FullAccess
+        - AWSLambdaBasicExecutionRole
