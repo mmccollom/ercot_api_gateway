@@ -15,6 +15,28 @@ def execute(delivery_date: str) -> str:
     dataset = pq.ParquetDataset(s3_path, filters=filters)
 
     df = dataset.read().to_pandas()
+
+    # convert effective_to and effective_from to string from datetime with format YYYY-MM-DD HH:MM:SS
+    df['effective_to'] = df['effective_to'].dt.strftime('%Y-%m-%d %H:%M:%S')
+    df['effective_from'] = df['effective_from'].dt.strftime('%Y-%m-%d %H:%M:%S')
+
+    # move column effective_to to the start of the dataframe
+    cols = list(df.columns)
+    cols.insert(0, cols.pop(cols.index('effective_to')))
+    df = df[cols]
+
+    # move column effective_from to the start of the dataframe
+    cols = list(df.columns)
+    cols.insert(0, cols.pop(cols.index('effective_from')))
+    df = df[cols]
+
+    # move column delivery_date to the start of the dataframe
+    cols = list(df.columns)
+    cols.insert(0, cols.pop(cols.index('delivery_date')))
+    df = df[cols]
+
+    print(df.head())
+
     return json.loads(df.to_json(orient='records'))
 
 
@@ -27,4 +49,4 @@ def lambda_handler(event, context):
 
 # for local testing
 if __name__ == '__main__':
-    print (lambda_handler({'delivery_date': '2023-05-20'}, None))
+    lambda_handler({'delivery_date': '2023-05-20'}, None)
