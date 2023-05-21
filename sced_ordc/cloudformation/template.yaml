@@ -3,7 +3,7 @@ Resources:
   AGRA1HUD6:
     Type: 'AWS::ApiGateway::RestApi'
     Properties:
-      Name: ercot_load_forecast_by_wzone
+      Name: ercot_sced_ordc
       ApiKeySourceType: HEADER
       EndpointConfiguration:
         Types:
@@ -38,7 +38,7 @@ Resources:
         TimeoutInMillis: 29000
         Type: AWS
         Uri: !Sub >-
-          arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:26982295****:function:api_ercot_load_forecast_by_wzone/invocations
+          arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:26982295****:function:api_ercot_sced_ordc/invocations
       MethodResponses:
         - ResponseModels:
             application/json: Empty
@@ -53,7 +53,7 @@ Resources:
     Type: 'AWS::Lambda::Permission'
     Properties:
       Action: 'lambda:InvokeFunction'
-      FunctionName: api_ercot_load_forecast_by_wzone
+      FunctionName: api_ercot_sced_ordc
       Principal: apigateway.amazonaws.com
       SourceArn:
         'Fn::Join':
