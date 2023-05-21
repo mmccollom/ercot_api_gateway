@@ -11,7 +11,7 @@ def execute(delivery_date: str) -> str:
 
     filters = [('delivery_date', '=', delivery_date),]
 
-    s3_path = 's3://ercot-62841215/sced_lmp/'
+    s3_path = 's3://ercot-62841215/sced_ordc/'
     dataset = pq.ParquetDataset(s3_path, filters=filters)
 
     df = dataset.read().to_pandas()

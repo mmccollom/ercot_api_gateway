@@ -3,7 +3,7 @@ Resources:
   AGRA1HUD6:
     Type: 'AWS::ApiGateway::RestApi'
     Properties:
-      Name: ercot_sced_lmp
+      Name: ercot_load_forecast
       ApiKeySourceType: HEADER
       EndpointConfiguration:
         Types:
